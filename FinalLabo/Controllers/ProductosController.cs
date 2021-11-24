@@ -9,6 +9,7 @@ using FinalLabo.Data;
 using FinalLabo.Models;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using FinalLabo.ViewsModels;
 
 namespace FinalLabo.Controllers
 {
@@ -24,10 +25,34 @@ namespace FinalLabo.Controllers
         }
 
         // GET: Productos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? marcaIdParam, int? categoriaIdParam)
         {
-            var applicationDbContext = _context.productos.Include(p => p.Categoria).Include(p => p.Marca);
-            return View(await applicationDbContext.ToListAsync());
+            var appDBcontexto =  _context.productos.Include(a => a.Marca).Select(a => a);
+            appDBcontexto = _context.productos.Include(a => a.Categoria).Select(a => a);
+            //if (!string.IsNullOrEmpty(busquedaNombre))
+            //{
+            //    appDBcontexto = appDBcontexto.Where(a => a.nombre.Contains(busquedaNombre));
+            //}
+            if (marcaIdParam.HasValue)
+            {
+                appDBcontexto = appDBcontexto.Where(a => a.marcaId.ToString().Contains(marcaIdParam.ToString()));
+            }
+            if (categoriaIdParam.HasValue)
+            {
+                appDBcontexto = appDBcontexto.Where(a => a.categoriaId == categoriaIdParam.Value);
+            }
+
+            ProductosViewModel modelo = new ProductosViewModel()
+            {
+                Productos = appDBcontexto.ToList(),
+                Categorias = new SelectList(_context.categorias, "Id", "Descripcion", categoriaIdParam),
+                Marcas = new SelectList(_context.marcas, "Id", "Descripcion", marcaIdParam)
+
+            };
+
+            return View(modelo);
+            //var applicationDbContext = _context.productos.Include(p => p.Categoria).Include(p => p.Marca);
+            //return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Productos/Details/5
