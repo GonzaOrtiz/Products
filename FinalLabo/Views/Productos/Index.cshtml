@@ -51,17 +51,17 @@
             <td>
                 @if (!string.IsNullOrEmpty(@item.Imagen)) { 
                 <img src="~/images/productos/@item.Imagen" class="img-thumbnail" 
-                    style="max-height:75px; max-width:75px;" asp-append-version="true" />
+                    style="max-height:50px; max-width:50px;" asp-append-version="true" />
                 }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Favorito)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Categoria.Id)
+                @Html.DisplayFor(modelItem => item.Categoria.Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Marca.Id)
+                @Html.DisplayFor(modelItem => item.Marca.Descripcion)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

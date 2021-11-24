@@ -53,8 +53,8 @@ namespace FinalLabo.Controllers
         // GET: Productos/Create
         public IActionResult Create()
         {
-            ViewData["categoriaId"] = new SelectList(_context.categorias, "Id", "Id");
-            ViewData["marcaId"] = new SelectList(_context.marcas, "Id", "Id");
+            ViewData["categoriaId"] = new SelectList(_context.categorias, "Id", "Descripcion");
+            ViewData["marcaId"] = new SelectList(_context.marcas, "Id", "Descripcion");
             return View();
         }
 
@@ -114,8 +114,8 @@ namespace FinalLabo.Controllers
             {
                 return NotFound();
             }
-            ViewData["categoriaId"] = new SelectList(_context.categorias, "Id", "Id", producto.categoriaId);
-            ViewData["marcaId"] = new SelectList(_context.marcas, "Id", "Id", producto.marcaId);
+            ViewData["categoriaId"] = new SelectList(_context.categorias, "Id", "Descripcion", producto.categoriaId);
+            ViewData["marcaId"] = new SelectList(_context.marcas, "Id", "Descripcion", producto.marcaId);
             return View(producto);
         }
 
@@ -135,6 +135,33 @@ namespace FinalLabo.Controllers
             {
                 try
                 {
+                    var archivos = HttpContext.Request.Form.Files;
+                    if (archivos != null && archivos.Count > 0)
+                    {
+                        var archivoFoto = archivos[0];
+                        if (archivoFoto.Length > 0)
+                        {
+                            var pathDestino = Path.Combine(_env.WebRootPath, "images\\productos");
+                            // generar nombre aleatorio de fotografia
+                            var archivoDestino = Guid.NewGuid().ToString();
+                            archivoDestino = archivoDestino.Replace("-", "");
+                            archivoDestino += Path.GetExtension(archivoFoto.FileName);
+                            var rutaDestino = Path.Combine(pathDestino, archivoDestino);
+
+                            if (!string.IsNullOrEmpty(producto.Imagen))
+                            {
+                                string fotoAnterior = Path.Combine(pathDestino, producto.Imagen);
+                                if (System.IO.File.Exists(fotoAnterior))
+                                    System.IO.File.Delete(fotoAnterior);
+                            }
+
+                            using (var filestream = new FileStream(rutaDestino, FileMode.Create))
+                            {
+                                archivoFoto.CopyTo(filestream);
+                                producto.Imagen = archivoDestino;
+                            };
+                        }
+                    }
                     _context.Update(producto);
                     await _context.SaveChangesAsync();
                 }
