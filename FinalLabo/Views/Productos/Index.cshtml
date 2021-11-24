@@ -49,7 +49,6 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                @*@Html.DisplayFor(modelItem => item.Imagen)*@
                 @if (!string.IsNullOrEmpty(@item.Imagen)) { 
                 <img src="~/images/productos/@item.Imagen" class="img-thumbnail" 
                     style="max-height:75px; max-width:75px;" asp-append-version="true" />

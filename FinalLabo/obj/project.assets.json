@@ -7499,11 +7499,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\GONZALO\\source\\repos\\FinalLabo\\FinalLabo\\FinalLabo.csproj",
+      "projectUniqueName": "C:\\Users\\GONZALO\\Desktop\\FinalLabo\\FinalLabo\\FinalLabo.csproj",
       "projectName": "FinalLabo",
-      "projectPath": "C:\\Users\\GONZALO\\source\\repos\\FinalLabo\\FinalLabo\\FinalLabo.csproj",
+      "projectPath": "C:\\Users\\GONZALO\\Desktop\\FinalLabo\\FinalLabo\\FinalLabo.csproj",
       "packagesPath": "C:\\Users\\GONZALO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\GONZALO\\source\\repos\\FinalLabo\\FinalLabo\\obj\\",
+      "outputPath": "C:\\Users\\GONZALO\\Desktop\\FinalLabo\\FinalLabo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
