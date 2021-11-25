@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<FinalLabo.Models.Producto>*@
-    @model FinalLabo.ViewsModels.ProductosViewModel
+﻿    @model FinalLabo.ViewsModels.ProductosViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -11,10 +10,10 @@
 </p>
 <form asp-action="Index" method="get">
     <p>
-        Marcas: 
+        Marcas:
         <select name="marcaIdParam" asp-items="@Model.Marcas">
-                    </select>
-                    Marcas: 
+        </select>
+        Categorias:
         <select name="categoriaIdParam" asp-items="@Model.Categorias">
         </select>
 
@@ -22,7 +21,28 @@
     </p>
 </form>
 
+    <div class="d-flex">
+        <div class="row">
+@foreach (var item in Model.Productos)
+{
 
+            <div class="card col-flex" style="width: 18rem;">
+                <img class="card-img-top" src="~/images/productos/@item.Imagen" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nombre)</h5>
+@*                    <p class="card-text"> @Html.DisplayFor(modelItem => item.Precio)</p>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Categoria)</p>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Marca)</p>*@
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+
+}
+        </div>
+    </div>
+
+@*
 <table class="table">
     <thead>
         <tr>
@@ -51,38 +71,41 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Productos) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @if (!string.IsNullOrEmpty(@item.Imagen)) { 
-                <img src="~/images/productos/@item.Imagen" class="img-thumbnail" 
-                    style="max-height:50px; max-width:50px;" asp-append-version="true" />
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Favorito)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marca.Descripcion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Productos)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(@item.Imagen))
+                    {
+                        <img src="~/images/productos/@item.Imagen" class="img-thumbnail"
+                     style="max-height:50px; max-width:50px;" asp-append-version="true" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Favorito)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca.Descripcion)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
-</table>
+</table>*@

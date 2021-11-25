@@ -51,8 +51,6 @@ namespace FinalLabo.Controllers
             };
 
             return View(modelo);
-            //var applicationDbContext = _context.productos.Include(p => p.Categoria).Include(p => p.Marca);
-            //return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Productos/Details/5
