@@ -30,8 +30,6 @@
             </div>
             <div class="form-group">
                 <label asp-for="Imagen" class="control-label"></label>
-@*                <input asp-for="Imagen" class="form-control" />
-                <span asp-validation-for="Imagen" class="text-danger"></span>*@
                 <input type="hidden" asp-for="Imagen" />
                 <img src="~/images/productos/@Model.Imagen" id="imagen" class="img-thumbnail"
                     style="max-height: 75px;max-width: 75px;"
