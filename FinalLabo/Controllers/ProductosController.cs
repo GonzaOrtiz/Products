@@ -10,6 +10,7 @@ using FinalLabo.Models;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using FinalLabo.ViewsModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalLabo.Controllers
 {
@@ -25,14 +26,14 @@ namespace FinalLabo.Controllers
         }
 
         // GET: Productos
-        public async Task<IActionResult> Index(int? marcaIdParam, int? categoriaIdParam)
+        public async Task<IActionResult> Index(string busquedaNombre,int? marcaIdParam, int? categoriaIdParam)
         {
             var appDBcontexto =  _context.productos.Include(a => a.Marca).Select(a => a);
             appDBcontexto = _context.productos.Include(a => a.Categoria).Select(a => a);
-            //if (!string.IsNullOrEmpty(busquedaNombre))
-            //{
-            //    appDBcontexto = appDBcontexto.Where(a => a.nombre.Contains(busquedaNombre));
-            //}
+            if (!string.IsNullOrEmpty(busquedaNombre))
+            {
+                appDBcontexto = appDBcontexto.Where(a => a.Nombre.Contains(busquedaNombre));
+            }
             if (marcaIdParam.HasValue)
             {
                 appDBcontexto = appDBcontexto.Where(a => a.marcaId.ToString().Contains(marcaIdParam.ToString()));
@@ -46,14 +47,15 @@ namespace FinalLabo.Controllers
             {
                 Productos = appDBcontexto.ToList(),
                 Categorias = new SelectList(_context.categorias, "Id", "Descripcion", categoriaIdParam),
-                Marcas = new SelectList(_context.marcas, "Id", "Descripcion", marcaIdParam)
-
+                Marcas = new SelectList(_context.marcas, "Id", "Descripcion", marcaIdParam),
+                Nombre = busquedaNombre
             };
 
             return View(modelo);
         }
 
         // GET: Productos/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -74,6 +76,7 @@ namespace FinalLabo.Controllers
         }
 
         // GET: Productos/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["categoriaId"] = new SelectList(_context.categorias, "Id", "Descripcion");
@@ -86,6 +89,7 @@ namespace FinalLabo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Nombre,Precio,Descripcion,Imagen,Favorito,categoriaId,marcaId")] Producto producto)
         {
             if (ModelState.IsValid)
@@ -125,6 +129,7 @@ namespace FinalLabo.Controllers
         }
 
         // GET: Productos/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -147,6 +152,7 @@ namespace FinalLabo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Precio,Descripcion,Imagen,Favorito,categoriaId,marcaId")] Producto producto)
         {
             if (id != producto.Id)
@@ -207,6 +213,7 @@ namespace FinalLabo.Controllers
         }
 
         // GET: Productos/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -229,6 +236,7 @@ namespace FinalLabo.Controllers
         // POST: Productos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var producto = await _context.productos.FindAsync(id);

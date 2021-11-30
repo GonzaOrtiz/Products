@@ -1,8 +1,26 @@
-﻿@{
+﻿@model IEnumerable<FinalLabo.Models.Producto>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Favoritos</h1>
 </div>
+
+ <div class="d-flex flex-wrap">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 d-flex align-items-stretch my-2">
+                    <a class="card card-productos text-center text-decoration-none text-dark animated bounceInLeft"
+                    style="width: 25rem;" asp-controller="Productos" asp-action="Details" asp-route-id="@item.Id">
+                        <img class="card-img-top img-responsive my-3 mx-auto" src="~/images/productos/@item.Imagen" style="max-width: 150px; max-height: 150px;">
+                        <div class="card-title">
+                            <p class="h6">@item.Nombre</p>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>

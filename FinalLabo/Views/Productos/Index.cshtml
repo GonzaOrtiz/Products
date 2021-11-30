@@ -1,4 +1,4 @@
-﻿    @model FinalLabo.ViewsModels.ProductosViewModel
+﻿@model FinalLabo.ViewsModels.ProductosViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -16,96 +16,97 @@
         Categorias:
         <select name="categoriaIdParam" asp-items="@Model.Categorias">
         </select>
-
+        Nombre: <input type="text" asp-for="@Model.Nombre" name="busquedaNombre" />
         <input type="submit" value="Filtrar" />
     </p>
 </form>
 
-    <div class="d-flex">
+
+ <div class="d-flex flex-wrap">
         <div class="row">
-@foreach (var item in Model.Productos)
-{
-
-            <div class="card col-flex" style="width: 18rem;">
-                <img class="card-img-top" src="~/images/productos/@item.Imagen" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nombre)</h5>
-@*                    <p class="card-text"> @Html.DisplayFor(modelItem => item.Precio)</p>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Descripcion)</p>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Categoria)</p>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Marca)</p>*@
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+            @foreach (var item in Model.Productos)
+            {
+                <div class="col-lg-3 d-flex align-items-stretch my-2">
+                    <a class="card card-productos text-center text-decoration-none text-dark animated bounceInLeft"
+                    style="width: 25rem;" asp-action="Details" asp-route-id="@item.Id">
+                        <img class="card-img-top img-responsive my-3 mx-auto" src="~/images/productos/@item.Imagen" style="max-width: 150px; max-height: 150px;">
+                        <div class="card-title">
+                            <p class="h6">@item.Nombre</p>
+                        </div>
+                    </a>
                 </div>
-            </div>
-
-}
+            }
         </div>
     </div>
 
+
+
+
 @*
-<table class="table">
+    <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Productos[0].Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Productos[0].Precio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Productos[0].Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Productos[0].Imagen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Productos[0].Favorito)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Productos[0].Categoria)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Productos[0].Marca)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+    <th>
+    @Html.DisplayNameFor(model => model.Productos[0].Nombre)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.Productos[0].Precio)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.Productos[0].Descripcion)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.Productos[0].Imagen)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.Productos[0].Favorito)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.Productos[0].Categoria)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.Productos[0].Marca)
+    </th>
+    <th></th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Productos)
-        {
+    @foreach (var item in Model.Productos)
+    {
 
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Precio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
-                </td>
-                <td>
-                    @if (!string.IsNullOrEmpty(@item.Imagen))
-                    {
-                        <img src="~/images/productos/@item.Imagen" class="img-thumbnail"
-                     style="max-height:50px; max-width:50px;" asp-append-version="true" />
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Favorito)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Categoria.Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Marca.Descripcion)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
+    <tr>
+    <td>
+    @Html.DisplayFor(modelItem => item.Nombre)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.Precio)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.Descripcion)
+    </td>
+    <td>
+    @if (!string.IsNullOrEmpty(@item.Imagen))
+    {
+    <img src="~/images/productos/@item.Imagen" class="img-thumbnail"
+    style="max-height:50px; max-width:50px;" asp-append-version="true" />
+    }
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.Favorito)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.Categoria.Descripcion)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.Marca.Descripcion)
+    </td>
+    <td>
+    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+    </td>
+    </tr>
+    }
     </tbody>
-</table>*@
+    </table>
+*@

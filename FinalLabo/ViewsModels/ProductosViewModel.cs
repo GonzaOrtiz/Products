@@ -9,5 +9,6 @@ namespace FinalLabo.ViewsModels
         public List<Producto> Productos { get; set; }
         public SelectList Categorias { get; set; }
         public SelectList Marcas { get; set; }
+        public string Nombre { get; set; }
     }
 }

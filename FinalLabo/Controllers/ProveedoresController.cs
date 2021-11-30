@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FinalLabo.Data;
 using FinalLabo.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalLabo.Controllers
 {
@@ -26,6 +27,7 @@ namespace FinalLabo.Controllers
         }
 
         // GET: Proveedores/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,6 +46,7 @@ namespace FinalLabo.Controllers
         }
 
         // GET: Proveedores/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +57,7 @@ namespace FinalLabo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Nombre,Telefono,Domicilio,Localidad,Provincia")] Proveedor proveedor)
         {
             if (ModelState.IsValid)
@@ -66,6 +70,7 @@ namespace FinalLabo.Controllers
         }
 
         // GET: Proveedores/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,6 +91,7 @@ namespace FinalLabo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Telefono,Domicilio,Localidad,Provincia")] Proveedor proveedor)
         {
             if (id != proveedor.Id)
@@ -117,6 +123,7 @@ namespace FinalLabo.Controllers
         }
 
         // GET: Proveedores/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,6 +144,7 @@ namespace FinalLabo.Controllers
         // POST: Proveedores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var proveedor = await _context.proveedores.FindAsync(id);
