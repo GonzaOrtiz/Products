@@ -6,6 +6,7 @@
     "\\FinalLabo\\Models",
     "\\FinalLabo\\Views",
     "\\FinalLabo\\ViewsModels",
+    "\\FinalLabo\\Views\\Home",
     "\\FinalLabo\\Views\\Marcas",
     "\\FinalLabo\\Views\\Productos",
     "\\FinalLabo\\Views\\Shared"

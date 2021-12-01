@@ -26,7 +26,7 @@ namespace FinalLabo.Controllers
         }
 
         // GET: Productos
-        public async Task<IActionResult> Index(string busquedaNombre,int? marcaIdParam, int? categoriaIdParam)
+        public IActionResult Index(string busquedaNombre,int? marcaIdParam, int? categoriaIdParam)
         {
             var appDBcontexto =  _context.productos.Include(a => a.Marca).Select(a => a);
             appDBcontexto = _context.productos.Include(a => a.Categoria).Select(a => a);
@@ -94,8 +94,6 @@ namespace FinalLabo.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
                 var archivos = HttpContext.Request.Form.Files;
                 if (archivos != null && archivos.Count > 0)
                 {
@@ -116,7 +114,6 @@ namespace FinalLabo.Controllers
                         };
                     }
                 }
-
 
 
                 _context.Add(producto);
