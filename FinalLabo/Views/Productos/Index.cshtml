@@ -3,45 +3,57 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<form asp-action="Index" method="get">
-    <p>
-        Marcas:
-        <select name="marcaIdParam" asp-items="@Model.Marcas">
-        </select>
-        Categorias:
-        <select name="categoriaIdParam" asp-items="@Model.Categorias">
-        </select>
-        Nombre: <input type="text" asp-for="@Model.Nombre" name="busquedaNombre" />
-        <input type="submit" value="Filtrar" />
-    </p>
-</form>
-
-
- <div class="d-flex flex-wrap">
-        <div class="row">
-            @foreach (var item in Model.Productos)
-            {
-                <div class="col-lg-3 d-flex align-items-stretch my-2">
-                    <a class="card card-productos text-center text-decoration-none text-dark animated bounceInLeft"
-                    style="width: 25rem;" asp-action="Details" asp-route-id="@item.Id">
-                        <img class="card-img-top img-responsive my-3 mx-auto" src="~/images/productos/@item.Imagen" style="max-width: 150px; max-height: 150px;">
-                        <div class="card-title">
-                            <p class="h6">@item.Nombre</p>
-                            <p class="h6">@item.Precio</p>
-                            <p class="h6">@item.Descripcion</p>
-                            <p class="h6">@item.Categoria.Descripcion</p>
-                            <p class="h6">@item.Marca.Descripcion</p>
-                        </div>
-                    </a>
+<div class="card">
+    <div class="card-body">
+        <h3>Productos</h3>
+        <form asp-action="Index" method="get">
+            <div class="row">
+                <div class="col col-md-2">
+                    <select type="text" name="marcaIdParam" asp-items="@Model.Marcas" class="form-control" placeholder="Marca">
+                    </select>
                 </div>
-            }
-        </div>
+                <div class="col col-md-2">
+                    <select type="text" name="categoriaIdParam" asp-items="@Model.Categorias" class="form-control" placeholder="Categoria">
+                    </select>
+                </div>
+                <div class="col col-md-2">
+                    <input type="text" class="form-control" placeholder="Nombre" type="text" asp-for="@Model.Nombre" name="busquedaNombre">
+                </div>
+                <div class="col col-md-2">
+                    <input type="submit" class="btn btn-primary" value="Filtrar" />
+                </div>
+                <div class="col col-md-2">
+
+                        <a asp-action="Create" class="btn btn-primary shadow-sm">Nuevo</a>
+                </div>
+            </div>
+
+        </form>
     </div>
+</div>
+<br />
+<div class="d-flex flex-wrap">
+    <div class="row">
+        @foreach (var item in Model.Productos)
+        {
+            <div class="col-lg-3 d-flex align-items-stretch my-2">
+                <a class="card card-productos text-center text-decoration-none text-dark animated bounceInLeft"
+               style="width: 25rem;" asp-action="Details" asp-route-id="@item.Id">
+                    <img class="card-img-top img-responsive my-3 mx-auto" src="~/images/productos/@item.Imagen" style="max-width: 150px; max-height: 150px;">
+                    <div class="card-title">
+                        <p class="h6">@item.Nombre</p>
+                        <p class="h6">@item.Precio</p>
+                        <p class="h6">@item.Descripcion</p>
+                        <p class="h6">@item.Categoria.Descripcion</p>
+                        <p class="h6">@item.Marca.Descripcion</p>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
 
 
 
