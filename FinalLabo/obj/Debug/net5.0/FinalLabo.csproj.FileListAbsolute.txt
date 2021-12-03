@@ -342,11 +342,6 @@ C:\Users\GONZALO\Desktop\FinalLabo\FinalLabo\obj\Debug\net5.0\Razor\Views\Produc
 C:\Users\GONZALO\Desktop\FinalLabo\FinalLabo\obj\Debug\net5.0\Razor\Views\Productos\Details.cshtml.g.cs
 C:\Users\GONZALO\Desktop\FinalLabo\FinalLabo\obj\Debug\net5.0\Razor\Views\Productos\Edit.cshtml.g.cs
 C:\Users\GONZALO\Desktop\FinalLabo\FinalLabo\obj\Debug\net5.0\Razor\Views\Productos\Index.cshtml.g.cs
-C:\Users\GONZALO\Desktop\FinalLabo\FinalLabo\obj\Debug\net5.0\Razor\Views\ProveedoresProductores\Create.cshtml.g.cs
-C:\Users\GONZALO\Desktop\FinalLabo\FinalLabo\obj\Debug\net5.0\Razor\Views\ProveedoresProductores\Delete.cshtml.g.cs
-C:\Users\GONZALO\Desktop\FinalLabo\FinalLabo\obj\Debug\net5.0\Razor\Views\ProveedoresProductores\Details.cshtml.g.cs
-C:\Users\GONZALO\Desktop\FinalLabo\FinalLabo\obj\Debug\net5.0\Razor\Views\ProveedoresProductores\Edit.cshtml.g.cs
-C:\Users\GONZALO\Desktop\FinalLabo\FinalLabo\obj\Debug\net5.0\Razor\Views\ProveedoresProductores\Index.cshtml.g.cs
 C:\Users\GONZALO\Desktop\FinalLabo\FinalLabo\obj\Debug\net5.0\Razor\Views\Proveedores\Create.cshtml.g.cs
 C:\Users\GONZALO\Desktop\FinalLabo\FinalLabo\obj\Debug\net5.0\Razor\Views\Proveedores\Delete.cshtml.g.cs
 C:\Users\GONZALO\Desktop\FinalLabo\FinalLabo\obj\Debug\net5.0\Razor\Views\Proveedores\Details.cshtml.g.cs

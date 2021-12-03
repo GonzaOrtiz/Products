@@ -97,26 +97,3 @@
 }
     </tbody>
 </table>
-
-@*
-<div class="d-flex flex-wrap">
-    <div class="row">
-        @foreach (var item in Model.Productos)
-        {
-        <div class="col-lg-3 d-flex align-items-stretch my-2">
-            <a class="card card-productos text-center text-decoration-none text-dark animated bounceInLeft"
-               style="width: 25rem;" asp-action="Details" asp-route-id="@item.Id">
-                <img class="card-img-top img-responsive my-3 mx-auto" src="~/images/productos/@item.Imagen" style="max-width: 150px; max-height: 150px;">
-                <div class="card-title">
-                    <p class="h6">@item.Nombre</p>
-                    <p class="h6">@item.Precio</p>
-                    <p class="h6">@item.Descripcion</p>
-                    <p class="h6">@item.Categoria.Descripcion</p>
-                    <p class="h6">@item.Marca.Descripcion</p>
-                </div>
-            </a>
-        </div>
-        }
-    </div>
-</div>
-*@
