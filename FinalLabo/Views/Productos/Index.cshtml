@@ -3,10 +3,14 @@
     ViewData["Title"] = "Index";
 }
 
+<br />
 
 <div class="card">
     <div class="card-body">
-        <h3>Productos</h3>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h3 class="h3 mb-0 text-gray-800">Productos</h3>
+            <a asp-action="Create" class="d-none d-sm-inline-block btn btn-primary">Nuevo </a>
+        </div>
         <form asp-action="Index" method="get">
             <div class="row">
                 <div class="col col-md-2">
@@ -21,11 +25,7 @@
                     <input type="text" class="form-control" placeholder="Nombre" type="text" asp-for="@Model.Nombre" name="busquedaNombre">
                 </div>
                 <div class="col col-md-2">
-                    <input type="submit" class="btn btn-primary" value="Filtrar" />
-                </div>
-                <div class="col col-md-2">
-
-                        <a asp-action="Create" class="btn btn-primary shadow-sm">Nuevo</a>
+                    <input type="submit" class="btn btn-success" value="Filtrar" />
                 </div>
             </div>
 
@@ -33,27 +33,90 @@
     </div>
 </div>
 <br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Productos[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Productos[0].Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Productos[0].Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Productos[0].Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Productos[0].Favorito)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Productos[0].Categoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Productos[0].Marca)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Productos) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @if (!string.IsNullOrEmpty(@item.Imagen)) { 
+                <img src="~/images/productos/@item.Imagen" class="img-thumbnail" 
+                    style="max-height:75px; max-width:75px;" asp-append-version="true" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Favorito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca.Descripcion)
+            </td>
+            <td>
+                <a asp-action="Edit"  class="btn btn-primary shadow-sm" asp-route-id="@item.Id">Editar</a> 
+                <a asp-action="Details"  class="btn btn-success shadow-sm" asp-route-id="@item.Id">Detalles</a> 
+                <a asp-action="Delete" class="btn btn-danger shadow-sm" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@*
 <div class="d-flex flex-wrap">
     <div class="row">
         @foreach (var item in Model.Productos)
         {
-            <div class="col-lg-3 d-flex align-items-stretch my-2">
-                <a class="card card-productos text-center text-decoration-none text-dark animated bounceInLeft"
+        <div class="col-lg-3 d-flex align-items-stretch my-2">
+            <a class="card card-productos text-center text-decoration-none text-dark animated bounceInLeft"
                style="width: 25rem;" asp-action="Details" asp-route-id="@item.Id">
-                    <img class="card-img-top img-responsive my-3 mx-auto" src="~/images/productos/@item.Imagen" style="max-width: 150px; max-height: 150px;">
-                    <div class="card-title">
-                        <p class="h6">@item.Nombre</p>
-                        <p class="h6">@item.Precio</p>
-                        <p class="h6">@item.Descripcion</p>
-                        <p class="h6">@item.Categoria.Descripcion</p>
-                        <p class="h6">@item.Marca.Descripcion</p>
-                    </div>
-                </a>
-            </div>
+                <img class="card-img-top img-responsive my-3 mx-auto" src="~/images/productos/@item.Imagen" style="max-width: 150px; max-height: 150px;">
+                <div class="card-title">
+                    <p class="h6">@item.Nombre</p>
+                    <p class="h6">@item.Precio</p>
+                    <p class="h6">@item.Descripcion</p>
+                    <p class="h6">@item.Categoria.Descripcion</p>
+                    <p class="h6">@item.Marca.Descripcion</p>
+                </div>
+            </a>
+        </div>
         }
     </div>
 </div>
-
-
-
-
+*@

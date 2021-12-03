@@ -2,13 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\FinalLabo",
-    "\\FinalLabo\\Controllers",
-    "\\FinalLabo\\Models",
     "\\FinalLabo\\Views",
     "\\FinalLabo\\ViewsModels",
+    "\\FinalLabo\\Views\\Categorias",
     "\\FinalLabo\\Views\\Home",
     "\\FinalLabo\\Views\\Marcas",
     "\\FinalLabo\\Views\\Productos",
+    "\\FinalLabo\\Views\\Proveedores",
     "\\FinalLabo\\Views\\Shared"
   ],
   "SelectedNode": "\\FinalLabo.sln",
